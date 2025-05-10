@@ -1,5 +1,5 @@
 // === src/game.ts ===
-import { Application, Assets, Texture } from 'pixi.js';
+import { Application, Assets } from 'pixi.js';
 import { Board } from './engine/board';
 import { Player } from './engine/player';
 import { Dice } from './engine/dice';

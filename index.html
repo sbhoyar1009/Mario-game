@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PixiJS Mario Party Game</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="instructions-modal" style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+    color: white;
+  ">
+    <div style="
+      background: #1e1e1e;
+      padding: 30px 40px;
+      border-radius: 12px;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    ">
+      <h2 style="margin-bottom: 20px;">🎮 How to Play</h2>
+      <ul style="text-align: left; font-size: 18px; line-height: 1.6;">
+        <li>Press <strong>spacebar</strong> to roll the dice.</li>
+        <li>Each player moves forward that many tiles.</li>
+        <li>Land on a <strong>star</strong> to collect one.</li>
+        <li>Step on a tile once: it turns <strong>gray</strong>.</li>
+        <li>Step on the same tile twice: it turns <strong>black</strong> (cracked).</li>
+        <li>Landing on a <strong>cracked tile</strong> sends you back to the start.</li>
+        <li>First to the target number of stars wins!</li>
+      </ul>
+      <button onclick="startPixiGame()"
+        style="margin-top: 30px; padding: 10px 20px; font-size: 18px; background: #00aaff; border: none; color: white; border-radius: 8px; cursor: pointer;">
+        Start Game
+      </button>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

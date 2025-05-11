@@ -30,38 +30,14 @@ export class Game {
         {
           name: 'main',
           assets: [
-            {
-              alias: 'bunny',
-              src: 'https://pixijs.io/examples/examples/assets/bunny.png',
-            },
-            {
-              alias: 'avatar2',
-              src: 'https://pixijs.io/examples/examples/assets/eggHead.png',
-            },
-            {
-              alias: 'dice-1',
-              src: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Alea_1.png',
-            },
-            {
-              alias: 'dice-2',
-              src: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Alea_2.png',
-            },
-            {
-              alias: 'dice-3',
-              src: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Alea_3.png',
-            },
-            {
-              alias: 'dice-4',
-              src: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Alea_4.png',
-            },
-            {
-              alias: 'dice-5',
-              src: 'https://upload.wikimedia.org/wikipedia/commons/5/55/Alea_5.png',
-            },
-            {
-              alias: 'dice-6',
-              src: 'https://upload.wikimedia.org/wikipedia/commons/f/f4/Alea_6.png',
-            },
+            { alias: 'bunny', src: 'https://pixijs.io/examples/examples/assets/bunny.png' },
+            { alias: 'avatar2', src: 'https://pixijs.io/examples/examples/assets/eggHead.png' },
+            { alias: 'dice-1', src: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Alea_1.png' },
+            { alias: 'dice-2', src: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Alea_2.png' },
+            { alias: 'dice-3', src: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Alea_3.png' },
+            { alias: 'dice-4', src: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Alea_4.png' },
+            { alias: 'dice-5', src: 'https://upload.wikimedia.org/wikipedia/commons/5/55/Alea_5.png' },
+            { alias: 'dice-6', src: 'https://upload.wikimedia.org/wikipedia/commons/f/f4/Alea_6.png' },
           ],
         },
       ],
@@ -113,10 +89,12 @@ export class Game {
 
         if (currentPlayer.stars >= this.targetStars) {
           alert(`${currentPlayer.name} wins with ${currentPlayer.stars} stars!`);
+          this.resetGame();
           return;
         }
 
         this.currentPlayerIndex = (this.currentPlayerIndex + 1) % this.players.length;
+
         if (this.isSinglePlayer && this.currentPlayerIndex === 1) {
           setTimeout(() => this.simulateCpuTurn(), 1000);
         }
@@ -141,9 +119,16 @@ export class Game {
 
     if (currentPlayer.stars >= this.targetStars) {
       alert(`${currentPlayer.name} wins with ${currentPlayer.stars} stars!`);
+      this.resetGame();
       return;
     }
 
     this.currentPlayerIndex = 0;
+  }
+
+  resetGame() {
+    this.app.stage.removeChildren();
+    const modal = document.getElementById('instructions-modal');
+    if (modal) modal.style.display = 'flex';
   }
 }

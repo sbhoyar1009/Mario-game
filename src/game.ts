@@ -1,4 +1,3 @@
-// === src/game.ts ===
 import { Application, Assets } from 'pixi.js';
 import { Board } from './engine/board';
 import { Player } from './engine/player';
@@ -15,6 +14,7 @@ export class Game {
   currentPlayerIndex = 0;
   targetStars = 3;
   isSinglePlayer = false;
+  isInputLocked = false;
 
   constructor(app: Application) {
     this.app = app;
@@ -71,7 +71,9 @@ export class Game {
 
   setupInput() {
     window.addEventListener('keydown', async (e) => {
-      if (e.key === ' ') {
+      if (e.key === ' ' && !this.isInputLocked) {
+        this.isInputLocked = true;
+
         const currentPlayer = this.players[this.currentPlayerIndex];
         this.hud.setTurn(currentPlayer.name);
 
@@ -97,6 +99,8 @@ export class Game {
 
         if (this.isSinglePlayer && this.currentPlayerIndex === 1) {
           setTimeout(() => this.simulateCpuTurn(), 1000);
+        } else {
+          this.isInputLocked = false;
         }
       }
     });
@@ -124,6 +128,7 @@ export class Game {
     }
 
     this.currentPlayerIndex = 0;
+    this.isInputLocked = false;
   }
 
   resetGame() {
